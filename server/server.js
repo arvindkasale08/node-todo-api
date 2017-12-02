@@ -5,7 +5,11 @@ var {mongoose} = require('./db/mongoose');
 var {Todo} = require('./models/todo');
 var {User} = require('./models/user');
 
+var port = process.env.Port || 3000;
+
 let app = express();
+
+//https://git.heroku.com/protected-fortress-92190.git
 
 app.use(bodyParser.json());
 
@@ -47,8 +51,8 @@ app.get('/todos/:id', (req, res) => {
     }
 });
 
-app.listen(3000, (err) => {
-    console.log('Started on port 3000');
+app.listen(port, (err) => {
+    console.log('Started on port',port);
 });
 
 
