@@ -51,6 +51,20 @@ app.get('/todos/:id', (req, res) => {
     }
 });
 
+app.delete('/todos/:id', (req, res) => {
+    if(req.params.id) {
+        Todo.findByIdAndRemove(req.params.id).then((todo) => {
+            res.send(todo);
+        }, (e) => {
+            res.status(400);
+            res.send({errorMessage: e});
+        })
+    } else {
+        res.status(400);
+        res.send({errorMessage: 'Invalid request. No ID sent'});
+    }
+});
+
 app.listen(port, (err) => {
     console.log('Started on port',port);
 });
